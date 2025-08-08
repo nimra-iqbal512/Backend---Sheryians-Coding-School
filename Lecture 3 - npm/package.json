@@ -1,0 +1,21 @@
+{
+  "name": "lecture-3---npm",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Nimra",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "echo \"\u001b[36m Running tests...\u001b[39m\" && node index.js",
+    "nimra": "echo \"I am Nimra\""
+  },
+  "dependencies": {
+    "chalk": "^5.5.0",
+    "jokes": "^0.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
