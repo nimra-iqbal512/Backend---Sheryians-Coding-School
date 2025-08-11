@@ -49,6 +49,7 @@ const fs = require('fs');
 // })
 
 // // Note: In below code, agr 'copy' folder exists nahi krta ho ga, to 'new.txt' create nahi ho gi, or error ae ga. So code execute hony sy pehly, directory('copy') ka hone zruri hai.
+//  // Copy k liye, New file to create ho jaye gi, pr directory nahi
 // fs.copyFile('hello.txt', './copy/new.txt', function(err){
 //     if (err) console.log(err.message);
 //      err;
