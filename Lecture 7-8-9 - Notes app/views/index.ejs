@@ -18,19 +18,19 @@
             </form>
         </div>
         <div class="tasks flex gap-3 flex-wrap p-10">
-            <div class="task w-72 px-3 py-4 bg-zinc-800 rounded-md">
-                <h1 class="text-white text-3xl tracking-tighter">Some task goes here</h1>
-                <a class="text-blue-500 inline-block mt-3" href="">Read More...</a>
-            </div>
-            <div class="task w-72 px-3 py-4 bg-zinc-800 rounded-md">
-                <h1 class="text-white text-3xl tracking-tighter">Some task goes here</h1>
-                <a class="text-blue-500 inline-block mt-3" href="">Read More...</a>
-            </div>
-            <div class="task w-72 px-3 py-4 bg-zinc-800 rounded-md">
-                <h1 class="text-white text-3xl tracking-tighter">Some task goes here</h1>
-                <a class="text-blue-500 inline-block mt-3" href="">Read More...</a>
-            </div>
-            <h3 class="text-zinc-600">no tasks yet..</h3>
+            <!-- <% %>   For logic of dynamic coding -->
+            <!-- <%= %>   For printing of dynamic coding -->
+            <% if(files.length > 0){ %>
+                <% files.forEach((val)=>{ %>
+                    <div class="task w-72 px-3 py-4 bg-zinc-800 rounded-md">
+                        <h1 class="text-white text-3xl tracking-tighter"><%= val %></h1>
+                        <a class="text-blue-500 inline-block mt-3" href="">Read More...</a>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <h3 class="text-zinc-600">no tasks yet..</h3>
+            <% } %>
+            
         </div>
     </div>
 </body>
