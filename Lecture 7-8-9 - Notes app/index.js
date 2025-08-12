@@ -16,6 +16,15 @@ app.get('/', (req, res)=>{
     });
 })
 
+app.post('/create', (req, res)=>{
+    console.log(req.body);
+
+    // Create a file
+    fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`, req.body.details, (err)=>{
+        res.redirect("/");
+    });
+});
+
 app.listen(3000, ()=>{
     console.log("Ya Ali a.s Madad");
 })
