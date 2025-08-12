@@ -16,6 +16,13 @@ app.get('/', (req, res)=>{
     });
 })
 
+app.get('/file/:filename', (req, res)=>{
+    fs.readFile(`./files/${req.params.filename}`, "utf-8", (err, fileData)=>{
+        // console.log(fileData);
+        res.render('show', {fileName: req.params.filename, fileData: fileData});
+    });
+});
+
 app.post('/create', (req, res)=>{
     console.log(req.body);
 
