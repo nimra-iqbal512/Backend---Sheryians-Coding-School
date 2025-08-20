@@ -23,6 +23,17 @@ app.get('/file/:filename', (req, res)=>{
     });
 });
 
+app.get('/edit/:filename', (req, res)=>{
+    res.render('edit', {previousName: req.params.filename});
+});
+
+app.post('/edit', (req, res)=>{
+    console.log(req.body);
+    fs.rename(`./files/${req.body.previous}`, `./files/${req.body.new}`, (err)=>{
+        res.redirect('/');
+    });
+});
+
 app.post('/create', (req, res)=>{
     console.log(req.body);
 
@@ -35,3 +46,4 @@ app.post('/create', (req, res)=>{
 app.listen(3000, ()=>{
     console.log("Ya Ali a.s Madad");
 })
+
