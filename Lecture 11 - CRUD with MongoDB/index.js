@@ -10,12 +10,24 @@ app.get('/', (req, res)=>{
 
 app.get('/create', async(req, res)=>{
     let created_user = await userModel.create({
-        name: "ashmal",
+        name: "xyzzz",
         email: "nimra@gmail.com",
         username: 'nimra iqbal'
     })
     res.send(created_user);
 });
+
+app.get('/update', async (req, res)=>{
+    // // Update a Single user
+    // let updated_user = await userModel.findOneAndUpdate({name: 'xyzzz'}, {name: 'new xyzzz'}, {new: true});
+    // res.send(updated_user);
+
+    // Update Multiple users
+    await userModel.updateMany({username: "nimra iqbal"}, {name: "nimra"});
+    // Here in updateMany(), {new: true} will not return the updated document.
+    let updated_users = await userModel.find({username: "nimra iqbal"});
+    res.send(updated_users)
+})
 
 app.listen(3000, ()=>{
     console.log('Al Ajal Ya Imam a.s');
