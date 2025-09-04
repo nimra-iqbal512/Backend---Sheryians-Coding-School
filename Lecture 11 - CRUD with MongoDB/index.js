@@ -29,6 +29,22 @@ app.get('/update', async (req, res)=>{
     res.send(updated_users)
 })
 
+app.get('/read', async (req, res)=>{
+    // // For all users
+    // let users = await userModel.find();
+    // res.send(users);
+
+    // // For particular/multiple users
+    // // let users = await userModel.find({username: "nimra iqbal"});
+    // let users = await userModel.find({name: "xyzzz"});
+    // res.send(users);
+
+    // For particular/single user
+    let users = await userModel.findOne({username: "nimra iqbal"});
+    res.send(users);
+})
+
+
 app.listen(3000, ()=>{
     console.log('Al Ajal Ya Imam a.s');
 });
