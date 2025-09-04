@@ -44,6 +44,10 @@ app.get('/read', async (req, res)=>{
     res.send(users);
 })
 
+app.get('/delete', async (req, res)=>{
+    let deleted_user = await userModel.findOneAndDelete({name: "xyzzz"});
+    res.send(deleted_user);
+})
 
 app.listen(3000, ()=>{
     console.log('Al Ajal Ya Imam a.s');
