@@ -16,7 +16,11 @@ app.get('/', (req, res)=>{
 app.get('/read', async (req, res)=>{
     let users = await userModel.find();
     res.render('read', {users});
+})
 
+app.get('/delete/:id', async (req, res)=>{
+    let user = await userModel.findOneAndDelete({_id: req.params.id});
+    res.redirect("/read");
 })
 
 app.post('/create', async (req, res)=>{
