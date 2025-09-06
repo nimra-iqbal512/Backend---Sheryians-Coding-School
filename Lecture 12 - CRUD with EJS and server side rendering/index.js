@@ -11,6 +11,9 @@ app.get('/', (req, res)=>{
     res.render('index');
 })
 
+app.get('/read', (req, res)=>{
+    res.render('read');
+})
 app.listen(3000, ()=>{
     console.log('Ya Ali a.s Madad');
 })
