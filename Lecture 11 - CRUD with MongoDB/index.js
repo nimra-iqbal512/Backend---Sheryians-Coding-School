@@ -45,8 +45,14 @@ app.get('/read', async (req, res)=>{
 })
 
 app.get('/delete', async (req, res)=>{
-    let deleted_user = await userModel.findOneAndDelete({name: "xyzzz"});
-    res.send(deleted_user);
+    // // Delete a single user
+    // let deleted_user = await userModel.findOneAndDelete({name: "xyzzz"});
+    // res.send(deleted_user);
+
+    // Delete Multiple users
+    let deleted_user = await userModel.deleteMany({name: 'nimrazzz2'});
+    console.log(deleted_user);
+    res.send(await userModel.find());
 })
 
 app.listen(3000, ()=>{
