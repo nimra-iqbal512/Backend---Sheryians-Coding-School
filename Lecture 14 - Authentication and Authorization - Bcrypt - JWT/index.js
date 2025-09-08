@@ -1,22 +1,15 @@
 const express = require('express');
 const app = express();
-const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
 
 app.get('/', (req, res)=>{
-    bcrypt.genSalt(10, function(err, salt){
-        bcrypt.hash('this password', salt, (err, hash)=>{
-            console.log(salt);
-            console.log(hash);
-        })
-    } );
+    let token = jwt.sign({email: 'abc@gmaiil.com'}, 'secret');  //Store encrypted string in cookies
+    res.cookie('token', token);
+    console.log(token);
     res.send("done");
-})
-
-app.get('/compare', (req, res)=>{
-    bcrypt.compare('this password', '$2b$10$vSlhYpvBEastbL4.H3YH2eSX.P5XAzKFe1gTearj9PkU2CoS8xnUq', (err, result)=>{
-        console.log(result);
-    })
-    res.send('Decrypt password');
 })
 
 app.listen(3000, ()=>{
