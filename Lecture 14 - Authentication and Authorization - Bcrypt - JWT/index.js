@@ -12,6 +12,13 @@ app.get('/', (req, res)=>{
     res.send("done");
 })
 
+app.get('/read', (req, res)=>{
+    console.log(req.cookies.token); //Encrypted string stored in cookies
+    let data = jwt.verify(req.cookies.token, 'secret'); //Using JWT, we can decrypt and get the actual data stored in browser/cookies
+    console.log(data);
+    res.send("read");
+})
+
 app.listen(3000, ()=>{
     console.log('Ya Ali a.s Madad');
 })
