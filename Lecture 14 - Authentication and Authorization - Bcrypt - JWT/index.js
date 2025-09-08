@@ -12,8 +12,11 @@ app.get('/', (req, res)=>{
     res.send("done");
 })
 
-app.get('/read', (req, res)=>{
-    res.send('Read page');
+app.get('/compare', (req, res)=>{
+    bcrypt.compare('this password', '$2b$10$vSlhYpvBEastbL4.H3YH2eSX.P5XAzKFe1gTearj9PkU2CoS8xnUq', (err, result)=>{
+        console.log(result);
+    })
+    res.send('Decrypt password');
 })
 
 app.listen(3000, ()=>{
