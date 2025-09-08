@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res)=>{
-    console.log('Hello Worlld');
+    // Set cookie
+    res.cookie("name", "nimra");
+    res.send("done");
 })
 
 app.listen(3000, ()=>{
