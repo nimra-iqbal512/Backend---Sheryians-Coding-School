@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const userModel = require("./models/user");
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const cookieParser = require('cookie-parser');
 const path = require('path');
@@ -26,6 +27,9 @@ app.post('/create', (req, res)=>{
                 password: hash,
                 age,
             });
+
+            let token = jwt.sign({email}, "secretKey");
+            res.cookie("token", token);
             res.send(createdUser);
         })
     })
