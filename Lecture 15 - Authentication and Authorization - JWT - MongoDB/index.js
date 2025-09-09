@@ -48,7 +48,11 @@ app.post('/login', async (req, res)=>{
 
     bcrypt.compare(req.body.password, user.password, (err, result)=>{
         // console.log(result);
-        if(result) return res.send("You can login");
+        if(result){
+            let token = jwt.sign({email: user.email}, "secretKey");
+            res.cookie("token", token);
+            return res.send("You can login");
+        }
         res.send("Something is wrong");
     });
     
