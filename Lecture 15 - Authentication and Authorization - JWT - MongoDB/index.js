@@ -35,6 +35,11 @@ app.post('/create', (req, res)=>{
     })
 })
 
+app.get('/logout', (req, res)=>{
+    res.cookie("token", "");
+    res.redirect('/');
+})
+
 app.listen(3000, ()=>{
     console.log('Ya Ali a.s Madad');
 })
