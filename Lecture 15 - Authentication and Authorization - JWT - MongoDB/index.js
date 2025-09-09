@@ -35,6 +35,25 @@ app.post('/create', (req, res)=>{
     })
 })
 
+app.get('/login', (req, res)=>{
+    res.render('login');
+})
+
+app.post('/login', async (req, res)=>{
+    let user = await userModel.findOne({email: req.body.email});
+    // console.log(user);
+    
+    if(!user) return res.send("Something is wrong");
+    // console.log(user.password, req.body.password);
+
+    bcrypt.compare(req.body.password, user.password, (err, result)=>{
+        // console.log(result);
+        if(result) return res.send("You can login");
+        res.send("Something is wrong");
+    });
+    
+})
+
 app.get('/logout', (req, res)=>{
     res.cookie("token", "");
     res.redirect('/');
