@@ -58,7 +58,7 @@ app.post('/login', async (req, res) => {
         if (result) {
             let token = jwt.sign({ email: email, userid: user._id }, 'secret');
             res.cookie("token", token);
-            res.status(200).send("You can login");
+            res.status(200).redirect("/profile");
         }
         else res.redirect('/login');
 
@@ -70,16 +70,19 @@ app.get('/logout', (req, res) => {
     res.redirect('/login');
 })
 
-app.get('/profile', isLoggedIn, (req, res) => {
+app.get('/profile', isLoggedIn, async (req, res) => {
+    // Find details of logged in user
     console.log(req.user);
-    res.redirect('/login');
+    let user = await userModel.findOne({email: req.user.email});
+    console.log(user);
+    res.render('profile', {user});
 })
 
 // Middleware for protected routes
 // We will check either user is logged in(token value set), or not
 // Agr yeh middleware hm kisi route (i.e. '/profile') py lgaty hain, jb tk user log in nahi ho ga, route ka callback function nahi chaly ga - Protected Routes
 function isLoggedIn(req, res, next) {
-    if (req.cookies.token === "") res.send("You must be logged in");
+    if (req.cookies.token === "") res.redirect("/login");
     else {
         let data = jwt.verify(req.cookies.token, 'secret');
         // console.log(data);
