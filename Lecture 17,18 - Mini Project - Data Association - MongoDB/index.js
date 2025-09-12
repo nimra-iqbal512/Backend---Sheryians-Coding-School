@@ -78,6 +78,18 @@ app.get('/profile', isLoggedIn, async (req, res) => {
     res.render('profile', {user});
 })
 
+app.post('/post', isLoggedIn, async (req, res)=>{
+    let user = await userModel.findOne({email: req.user.email});
+    let post = await postModel.create({
+        user: user._id,
+        content: req.body.content,
+    });
+
+    user.posts.push(post._id);
+    await user.save();
+    res.redirect('/profile');
+});
+
 // Middleware for protected routes
 // We will check either user is logged in(token value set), or not
 // Agr yeh middleware hm kisi route (i.e. '/profile') py lgaty hain, jb tk user log in nahi ho ga, route ka callback function nahi chaly ga - Protected Routes
