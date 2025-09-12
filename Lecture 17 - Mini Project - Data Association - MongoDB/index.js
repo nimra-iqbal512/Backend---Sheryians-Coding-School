@@ -41,7 +41,26 @@ app.post('/register', async (req, res)=>{
             res.send("Registered");
         })
     })
-})
+});
+
+app.get('/login', (req, res)=>{
+    res.render('login')
+});
+
+app.post('/login', async (req, res)=>{
+    let {email, password} = req.body;  
+
+    // Check either user exists or not
+    let user = await userModel.findOne({email: req.body.email});
+    if(!user) return res.status(500).send("Something went wrong");
+
+    bcrypt.compare(password, user.password, (err, result)=>{
+        if(result) res.status(200).send("You can login");
+        else res.redirect('/login');
+
+    })
+});
+
 
 app.listen(3000, ()=>{
     console.log('Ya Ali a.s');
