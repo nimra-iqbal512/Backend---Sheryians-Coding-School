@@ -85,9 +85,15 @@ app.get('/profile', isLoggedIn, async (req, res) => {
 
 app.get('/like/:id', isLoggedIn, async (req, res) => {
     console.log('Here');
-    
+
     let post = await postModel.findOne({_id: req.params.id}).populate("user");
-    post.likes.push(req.user.userid);
+    //Like and Unlike post - If logged in user not found in likes array, add user's like, else remove the logged in user like
+    if(post.user.indexOf(req.user.userid) === -1){
+        post.likes.push(req.user.userid);
+    }else{
+        post.likes.splice(post.likes.indexOf(req.user.userid), 1);
+    }
+    
     await post.save();
     res.redirect('/profile');
 })
