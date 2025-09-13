@@ -25,7 +25,9 @@
                     <div class="post min-w-72 text-justify w-1/3 mb-4 p-4 border-[1px] border-zinc-700 bg-zinc-800 rounded-md">
                         <h4 class="text-blue-500 mb-3"><%= user.username %></h4>
                         <p class="text-sm tracking-tight"><%= post.content %></p>
-                        <div class="btns flex gap-4 mt-5">
+
+                        <small class="inline-block mt-3"><%= post.likes.length %> like</small>
+                        <div class="btns flex gap-4">
                             <a class="text-blue-500" href="/like/<%=post._id%>">Like</a>
                             <a class="text-zinc-600" href="">Edit</a>
                         </div>
