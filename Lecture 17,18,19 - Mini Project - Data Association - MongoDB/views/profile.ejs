@@ -28,7 +28,9 @@
 
                         <small class="inline-block mt-3"><%= post.likes.length %> like</small>
                         <div class="btns flex gap-4">
-                            <a class="text-blue-500" href="/like/<%=post._id%>">Like</a>
+                            <a class="text-blue-500" href="/like/<%=post._id%>">
+                                <%= post.likes.indexOf(user._id) === -1 ? "Like" : "Unlike" %>
+                            </a>
                             <a class="text-zinc-600" href="">Edit</a>
                         </div>
                     </div>
