@@ -71,9 +71,14 @@ app.get('/logout', (req, res) => {
 })
 
 app.get('/profile', isLoggedIn, async (req, res) => {
-    // Find details of logged in user
-    console.log(req.user);
-    let user = await userModel.findOne({email: req.user.email});
+    // // Find details of logged in user
+    // console.log(req.user);
+
+    // let user = await userModel.findOne({email: req.user.email});
+    // await user.populate('posts'); //populate() replaces the ids of posts with actual post documents
+
+    // Above 2 linescan be combined as
+    let user = await userModel.findOne({email: req.user.email}).populate("posts");
     console.log(user);
     res.render('profile', {user});
 })
