@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const crypto = require('crypto');
+const multer = require('multer');
 
 app.set('view engine', 'ejs'); 
 app.use(express.json());
@@ -13,8 +15,12 @@ const storage = multer.diskStorage({
     cb(null, './public/images/uploads')
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, file.fieldname + '-' + uniqueSuffix)
+    // console.log(file.originalname);
+    
+    crypto.randomBytes(12, (err, bytes)=>{
+        const fn = bytes.toString("hex") + path.extname(file.originalname);
+        cb(null, fn);
+    })
   }
 })
 const upload = multer({ storage: storage })
