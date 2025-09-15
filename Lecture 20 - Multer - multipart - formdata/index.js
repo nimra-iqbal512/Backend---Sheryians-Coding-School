@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'publis')));
 
 app.get('/', (req, res)=>{
-    res.send('Hello World');
+    res.send('test');
 })
 
 app.listen(3000, ()=>{
