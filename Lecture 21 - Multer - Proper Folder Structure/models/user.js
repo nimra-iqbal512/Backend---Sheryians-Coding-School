@@ -5,7 +5,7 @@ let userSchema = mongoose.Schema({
     username: String,
     profilepic: {
         type: String,
-        default: "default.png"
+        default: "default.jpeg"
     },
 });
 
