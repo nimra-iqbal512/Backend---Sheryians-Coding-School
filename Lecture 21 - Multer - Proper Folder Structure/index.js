@@ -18,6 +18,10 @@ app.get('/', async (req, res)=>{
     res.render('index', {user});
 })
 
+app.get("/profile/upload", (req, res)=>{
+    res.render("profileUpload");
+})
+
 app.listen(3000, ()=>{
     console.log('Ya Ali a.s Madad');
 })
