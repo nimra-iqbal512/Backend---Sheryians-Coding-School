@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const multerconfig = require('./config/multerconfig');
 const userModel = require('./models/user');
+const upload = require('./config/multerconfig');
 
 app.set('view engine', 'ejs');
 app.use(express.json());
@@ -20,6 +21,10 @@ app.get('/', async (req, res)=>{
 
 app.get("/profile/upload", (req, res)=>{
     res.render("profileUpload");
+})
+
+app.post("/upload", multerconfig.single("image"), (req, res)=>{
+    console.log(req.file);
 })
 
 app.listen(3000, ()=>{
