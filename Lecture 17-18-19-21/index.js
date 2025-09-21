@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 
 let userModel = require('./models/user');
 let postModel = require('./models/post');
+let upload = require('./config/multerConfig')
 
 app.set('view engine', 'ejs');
 app.use(express.json());
@@ -114,6 +115,17 @@ app.get('/edit/:id', isLoggedIn, async (req, res)=>{
 
 app.post('/update/:id', isLoggedIn, async (req, res)=>{
     await postModel.findOneAndUpdate({_id: req.params.id}, {content: req.body.content});
+    res.redirect('/profile');
+})
+
+app.get('/profilePic', isLoggedIn, (req, res)=>{
+    res.render('profilePic');
+})
+
+app.post('/uploadImage', isLoggedIn, upload.single('image'), async (req, res)=>{
+    console.log(req.file);
+
+    await userModel.findOneAndUpdate({_id: req.user.id}, {profilePic: req.file.filename});
     res.redirect('/profile');
 })
 
