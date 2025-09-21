@@ -8,44 +8,44 @@
     <title>Document</title>
 </head>
 
-<body>
-    <div class="">
-        <a href="/logout">Logout</a>
+<body class="bg-zinc-900 text-white p-10">
+    <div class="flex justify-end">
+        <a class="bg-red-500 rounded-md text-sm px-3 py-2" href="/logout">Logout</a>
     </div>
 
     <div class="new-post">
         <div class="flex gap-3">
             <div class="w-10 h-10 bg-red-500 rounded-md overflow-hidden"><img class="w-full h-full object-cover" src="/images/uploads/<%= user.profilePic %>" alt=""></div>
-            <h1>Hello, <%= user.name %>
+            <h1 class="text-3xl tracking-tighter"><span class="font-light">Hello</span>, <%= user.name %>
             </h1>
         </div>
-        <p>You can create a new post</p>
-        <form action="/newPost" method="post">
-            <textarea placeholder="What's in your mind" name="content"></textarea>
-            <input type="submit" value="Create New Post">
+        <p class="mt-2">You can create a new post</p>
+        <form class="mt-4" action="/newPost" method="post">
+            <textarea class="border-2 border-zinc-800 outline-none resize-none px-3 py-2 rounded-md block" placeholder="What's in your mind" name="content"></textarea>
+            <input class="bg-blue-500 px-5 py-2 mt-2 rounded-md text-sm" type="submit" value="Create New Post">
         </form>
     </div>
 
-    <div class="posts">
-        <h2>Your posts</h2>
+    <div class="posts mt-20">
+        <h2 class=" text-zinc-500">Your posts</h2>
 
         <% user.posts.reverse().forEach(post=> { %>
 
-            <div class="post">
-                <p>
+            <div class="post border-2 bg-zinc-800 border-zinc-700 w-72 rounded-md p-2 px-3 mt-4">
+                <p class="text-blue-500">
                     <%= user.username %>
                 </p>
-                <p>
+                <p class="mt-1">
                     <%= post.content %>
                 </p>
-                <small>
+                <small class="block mt-5">
                     <%= post.likes.length %> like
                 </small>
-                <div class="btns">
-                    <a href="/like/<%= post._id %>">
+                <div class="btns flex gap-3">
+                    <a class="text-blue-500" href="/like/<%= post._id %>">
                         <%= post.likes.indexOf(user._id)==-1 ? "Like" : "Unlike" %>
                     </a>
-                    <a href="/edit/<%= post._id %>">Edit</a>
+                    <a class="text-zinc-500" href="/edit/<%= post._id %>">Edit</a>
                 </div>
             </div>
 

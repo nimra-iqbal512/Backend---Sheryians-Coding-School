@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=\, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
 </head>
-<body>
-    <div class="">
-        <a href="/logout">Logout</a>
+
+<body class="bg-zinc-900 text-white p-10">
+    <div class="flex justify-end">
+        <a class="bg-red-500 rounded-md text-sm px-3 py-2" href="/logout">Logout</a>
     </div>
 
     <div class="new-post">
         <p>Edit your post</p>
-        <form action="/update/<%= post._id %>" method="post">
-            <textarea placeholder="What's in your mind" name="content"><%= post.content %></textarea>
-            <input type="submit" value="Update Post">
+        <form class="mt-5" action="/update/<%= post._id %>" method="post">
+            <textarea class="border-2 border-zinc-800 rounded-md p-3 outline-none resize-none block" placeholder="What's in your mind" name="content"><%= post.content %></textarea>
+            <input class="bg-yellow-500 text-black rounded-md py-2 px-5 text-sm mt-2" type="submit" value="Update Post">
         </form>
     </div>
 </body>
+
 </html>
